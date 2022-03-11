@@ -1,4 +1,4 @@
-# Array-8
+# Array-7
 
 ## Problem 1: Minimum word distance (https://leetcode.com/problems/shortest-word-distance/)
 
