@@ -7,7 +7,7 @@ public class Problem2 {
 
     // TC : O (nk)
     // SC : O (m + n)
-    // where n = total words, k = avg length of word, m = word1 repeating in dict
+    // where n = total words, k = avg length of word, m = word repeating in dict
     Map<String, List<Integer>> map;
 
     public void WordDistance(String[] wordsDict) {
@@ -16,7 +16,7 @@ public class Problem2 {
         for (int i = 0; i < wordsDict.length; i++) {
             String curr = wordsDict[i];
             if (!map.containsKey(curr)) {
-                map.put(curr, new ArrayList<Integer>());
+                map.put(curr, new ArrayList<>());
             }
             map.get(curr).add(i);
         }
