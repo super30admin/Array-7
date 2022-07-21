@@ -1,6 +1,7 @@
 public class Problem1 {
-    // TC : O (n)
+    // TC : O (nk)
     // SC : O (1)
+    // where n = number of words and k = avg length of words
     public int shortestDistance(String[] wordsDict, String word1, String word2) {
         if (wordsDict == null || wordsDict.length == 0) return 0;
 
