@@ -1,0 +1,64 @@
+#Shortest Word Distance
+#tc: O(n)
+#sc: O(1)
+class Solution:
+    def shortestDistance(self, words, word1, word2):
+        size = len(words)
+        index1, index2 = size, size
+        ans = size
+    
+        for i in range(size):
+            if words[i] == word1:
+                index1 = i
+                ans = min(ans, abs(index1-index2))
+            elif words[i] == word2:
+                index2 = i
+                ans = min(ans, abs(index1-index2))
+        return ans
+#Shortest Word Distance II
+# tc O(m+n) 
+#sc O(1)
+class WordDistance:
+    def __init__(self, words):
+        self.dic, self.l = {}, len(words)
+        for i, w in enumerate(words):
+            self.dic[w] = self.dic.get(w, []) + [i]
+    def shortest(self, word1, word2):
+        l1, l2 = self.dic[word1], self.dic[word2]
+        i = j = 0
+        res = self.l
+    
+        while i < len(l1) and j < len(l2):
+            res = min(res, abs(l1[i]-l2[j]))
+            if l1[i] < l2[j]:
+                i += 1
+            else:
+                j += 1
+        return res
+
+#Shortest Word Distance III
+#tc: O(n)
+#sc: O(1)
+class Solution(object):
+    def shortestWordDistance(self, words, word1, word2):
+        """
+        :type words: List[str]
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """      
+        n = len(words)
+        minimum = n
+        w1 = -1
+        w2 = -1
+        for i in range(n):
+            if words[i] == word1:
+                w1 = i
+                if w2 != -1:
+                    minimum = min(w1-w2,minimum)
+            if words[i] == word2:
+                w2 = i
+                if w1 != -1 and w1 != w2:
+                    minimum = min(w2-w1,minimum)
+        return minimum
+        
