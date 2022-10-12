@@ -1,0 +1,99 @@
+
+
+Shortest Word Distance
+
+public int shortestDistance(String[] words, String word1, String word2) {
+        int d = Integer.MAX_VALUE;
+        //last seen positions for each word
+        int p1 = -1, p2 = -1;
+
+        for (int i = 0; i < words.length; i++) {
+            String w = words[i];
+            //if this is word1 - save its position and calculate if the distance is min 
+            if (word1.equals(w)) {
+                p1 = i;
+                if (p2 != -1)
+                    d = Math.min(d, p1 - p2);
+            } else if (word2.equals(w)) {
+                //do the same for word2
+                p2 = i;
+                if (p1 != -1)
+                    d = Math.min(d, p2 - p1);
+            }
+        }
+        return d;
+    }
+
+TC:O(N)
+SC:O(1)
+
+Shortest Word Distance II
+
+class WordDistance {
+
+    private Map<String,List<Integer>> occurences;
+    
+    public WordDistance(String[] words) {
+        occurences = new HashMap<>();
+        for(int i=0;i<words.length;i++){
+            occurences.computeIfAbsent(words[i], k -> new ArrayList<>()); 
+            occurences.get(words[i]).add(i);
+        }
+    }
+    
+    public int shortest(String word1, String word2) {
+        return shortest(occurences.get(word1), occurences.get(word2));
+    }
+    
+    /**
+    ** Finds the smallest difference between tow elements of the
+    ** two lists - provided that both lists are sorted
+    **/
+    private int shortest(List<Integer> i1, List<Integer> i2){
+        int dist = Integer.MAX_VALUE;
+        int i = 0;
+        int j= 0;
+        
+        while(i<i1.size() && j < i2.size()){
+            int index1 = i1.get(i);
+            int index2 = i2.get(j);
+            dist = Math.min(dist, Math.abs(index1-index2));
+            if(index1>index2){
+                j++;
+            }
+            else if(index2>index1){
+                i++;
+            }
+            else{
+                return 0;
+            }
+        }
+        return dist;
+    }
+}
+
+
+
+Shortest Word Distance III
+
+public int shortestWordDistance(String[] words, String word1, String word2) {
+    if (words == null || words.length == 0) return 0;
+    int i1 = -words.length;  //here is to guarantee mindistance will be greater than the word.length
+    int i2 = words.length;
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < words.length; i++) {
+        if (!word1.equals(word2)) {
+            if (words[i].equals(word1)) i1 = i;
+            if (words[i].equals(word2)) i2 = i;
+            min = Math.min(min, Math.abs(i1 - i2)); //so we don't have to check if (i1 != -1 && i2 != -1 in other solutions)
+        } else {
+            if (words[i].equals(word1)) {  //this the question on how to find the shortest distance of indices of the word
+                min = Math.min(min, Math.abs(i - i1));  //you can change to i - i1, it is also correct
+                i1 = i;  // update the i1 with current i for incoming distance checking
+            }
+        }
+    }
+    return min;
+}
+
+
