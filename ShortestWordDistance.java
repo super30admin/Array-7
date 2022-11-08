@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//Time Complexity : O(n) where n = length of wordsDict array
+//Time Complexity : O(n*k) where n = length of wordsDict array, k = average length of word
 //Space Complexity : O(1)
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
