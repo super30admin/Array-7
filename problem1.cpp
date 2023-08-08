@@ -7,7 +7,7 @@
 // Your code here along with comments explaining your approach
 
 
-// Approach : 2 pointers
+
 
 class Solution {
 public:
